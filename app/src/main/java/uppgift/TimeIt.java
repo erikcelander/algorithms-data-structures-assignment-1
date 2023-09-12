@@ -1,4 +1,4 @@
-package uppgift1;
+package uppgift;
 
 import java.util.Arrays;
 import java.util.concurrent.Callable;
@@ -55,8 +55,7 @@ public class TimeIt {
       for (int i = 0; i < 100; i++) {
         sum += i;
       }
-      return null; // returning null here in the example lambda function because I used
-                   // Callable<Void>
+      return null; // returning null here in this example lambda/anonymous function because I used Callable<Void>
     };
 
     try {
