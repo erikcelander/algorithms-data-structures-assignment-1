@@ -13,14 +13,15 @@ public class QuickFind {
   public void union(int a, int b) {
     // store value of index 'b' of the 'data' array in variable 'a_id'
     int a_id = data[a];
-    
+
     // store value of index 'b' of the 'data' array in variable 'b_id'
     int b_id = data[b];
 
     // loop through 'data' and find all elements belonging to the same group as 'a'
     for (int i = 0; i < data.length; i++) {
 
-    // if value of data[i] is equal to 'a_id', data[i] belongs to the same group as A
+      // if value of data[i] is equal to 'a_id', data[i] belongs to the same group as
+      // A
       if (data[i] == a_id) {
 
         // update group of data[i] to 'b_id'
@@ -28,12 +29,27 @@ public class QuickFind {
       }
     }
 
-    // after every element has been iterated through, all elements of group 'a' will now belong to group 'b'
+    // after every element has been iterated through, all elements of group 'a' will
+    // now belong to group 'b'
   }
 
   public boolean connected(int a, int b) {
-    // returns true if two elements belongs to the same group i.e connected and false if they're not connected
+    // returns true if two elements belongs to the same group i.e connected and
+    // false if they're not connected
     return data[a] == data[b];
+  }
+
+  public static void main(String[] args) {
+    QuickFind qf = new QuickFind(8);
+
+    qf.union(0, 1);
+    qf.union(1, 2);
+    qf.union(3, 4);
+    qf.union(4, 5);
+    qf.union(6, 7);
+
+    System.out.println(qf.connected(0, 2));
+    System.out.println(qf.connected(0, 7));
   }
 
 }
