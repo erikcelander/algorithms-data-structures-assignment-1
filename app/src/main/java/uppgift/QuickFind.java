@@ -10,12 +10,12 @@ public class QuickFind {
     }
   }
 
-  public void union(int a, int b) {
-
+  public void union() {
+    
   }
 
-  public void connected() {
-
+  public boolean connected(int a, int b) {
+    return data[a] == data[b];
   }
 
 
