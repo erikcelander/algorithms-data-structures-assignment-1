@@ -15,14 +15,14 @@ public class QuickUnionPathCompression {
     // it's the root of its group.
     while (i != data[i]) {
 
-
       // when we find an element that isn't the root of its group
       // we set data[i] to point to its grandparent, so that the next
       // time we try to find the root of 'i', it's faster,
       // i.e we have compressed the path
       data[i] = data[data[i]];
 
-      // after compressing the path for 'i', we then set 'i' to its parent (or previously grandparent)
+      // after compressing the path for 'i', we then set 'i' to its parent (or
+      // previously grandparent)
       // which helps us traverse up the tree to find the root
       i = data[i];
     }
@@ -33,25 +33,18 @@ public class QuickUnionPathCompression {
   }
 
   public void union(int a, int b) {
-    // store value of index 'b' of the 'data' array in variable 'a_id'
-    int a_id = data[a];
 
-    // store value of index 'b' of the 'data' array in variable 'b_id'
-    int b_id = data[b];
+    // find root of element 'a'
+    int rootA = root(a);
 
-    // loop through 'data' and find all elements belonging to the same group as 'a'
-    for (int i = 0; i < data.length; i++) {
+    // find root of element 'b'
+    int rootB = root(b);
 
-      // if value of data[i] is equal to 'a_id', data[i] belongs to the same group as 'a'
-      if (data[i] == a_id) {
-
-        // update group of data[i] to 'b_id'
-        data[i] = b_id;
-      }
+    // if they do not belong to the same group
+    if (rootA != rootB) {
+      // then we set the root of 'a' to the root of 'b', i.e merging the two groups
+      data[rootA] = rootB;
     }
-
-    // after every element has been iterated through, all elements of group 'a' will
-    // now belong to group 'b'
   }
 
   public boolean connected(int a, int b) {
@@ -61,16 +54,16 @@ public class QuickUnionPathCompression {
   }
 
   public static void main(String[] args) {
-    QuickFind qf = new QuickFind(8);
+    QuickUnionPathCompression qu = new QuickUnionPathCompression(8);
 
-    qf.union(0, 1);
-    qf.union(1, 2);
-    qf.union(3, 4);
-    qf.union(4, 5);
-    qf.union(6, 7);
+    qu.union(0, 1);
+    qu.union(1, 2);
+    qu.union(3, 4);
+    qu.union(4, 5);
+    qu.union(6, 7);
 
-    System.out.println(qf.connected(0, 2));
-    System.out.println(qf.connected(0, 7));
+    System.out.println(qu.connected(0, 2));
+    System.out.println(qu.connected(0, 7));
   }
 
 }

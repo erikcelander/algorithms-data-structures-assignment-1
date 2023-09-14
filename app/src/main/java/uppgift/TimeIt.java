@@ -49,7 +49,7 @@ public class TimeIt {
 
   public static void main(String[] args) {
 
-    // Example function to test the functionality
+    // Example lambda function to test the functionality
     Callable<Void> code = () -> {
       int sum = 0;
       for (int i = 0; i < 100; i++) {
