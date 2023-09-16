@@ -35,7 +35,8 @@ public class ThreeSumCache {
   }
 
   public static void main(String[] args) {
-    int[] nums = { -2, -1, 0, 1, 2 };
+    int[] nums = {-1, -1, 0, 1, 1};
+
     List<int[]> result = threeSum(nums);
 
     for (int[] triplet : result) {

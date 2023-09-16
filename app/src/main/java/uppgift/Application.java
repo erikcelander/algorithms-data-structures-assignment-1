@@ -21,20 +21,22 @@ public class Application {
 
   public static void main(String[] args) {
     try {
-      for (int length = 100; length <= 1500; length += 100) { // Increase the length by 100 each iteration
+      for (int length = 100; length <= 299; length += 100) { // Increase the length by 100 each iteration
         int[] nums = generateRandomArray(length);
 
         System.out.println("Testing with array size: " + length);
 
-        Callable<List<int[]>> bruteForceCallable = () -> ThreeSumBruteForce.threeSum(nums);
+        /*Callable<List<int[]>> bruteForceCallable = () -> ThreeSumBruteForce.threeSum(nums);
         TimingResult bruteForceResult = TimeIt.timeIt(bruteForceCallable, 1000);
-        System.out.println("Brute Force: " + bruteForceResult.toString());
+        System.out.println("Brute Force: " + bruteForceResult.toString());*/
 
         Callable<List<int[]>> cacheCallable = () -> ThreeSumCache.threeSum(nums);
         TimingResult cacheResult = TimeIt.timeIt(cacheCallable, 1000);
         System.out.println("Cache Method: " + cacheResult.toString());
 
         System.out.println("----------------------------------");
+
+        
       }
     } catch (Exception e) {
       e.printStackTrace();
