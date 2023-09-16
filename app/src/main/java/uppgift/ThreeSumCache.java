@@ -13,6 +13,12 @@ public class ThreeSumCache {
     Arrays.sort(numbers);
 
     for (int i = 0; i < numbers.length; i++) {
+      
+      // if we aren't at index 0 and the value is the same 
+      // as previous index, skip to avoid duplicates
+      if (i != 0 && numbers[i] == numbers[i - 1]) {
+        continue;
+      }
 
       int target = -numbers[i]; // the sum we want to find using the other two numbers
 
