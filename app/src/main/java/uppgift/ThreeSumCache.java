@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class ThreeSumCache {
   public static List<int[]> threeSum(int[] numbers) {
     List<int[]> res = new ArrayList<>();
-    Set<String> triplets = new HashSet<>(); 
+    Set<String> triplets = new HashSet<>();
 
     Arrays.sort(numbers); // sort to help find/avoid duplicates later
 
@@ -28,7 +28,8 @@ public class ThreeSumCache {
       int first = numbers[i]; // store the current number of the outer loop as 'first'
       int difference = -first; // the combined value of the two other numbers we need to sum the triplet to 0
 
-      // create hashmap and iterate over the array to store each unique value and the count/frequency of that value
+      // create hashmap and iterate over the array to store each unique value and the
+      // count/frequency of that value
       Map<Integer, Integer> cache = new HashMap<>();
       for (int k = i + 1; k < numbers.length; k++) {
 
@@ -38,19 +39,19 @@ public class ThreeSumCache {
         cache.put(numbers[k], cache.getOrDefault(numbers[k], 0) + 1);
       }
 
-
-      // loop through the remaining elements of the array to find potential combinations
+      // loop through the remaining elements of the array to find potential
+      // combinations
       for (int j = i + 1; j < numbers.length; j++) {
 
-        // 'j' > 'i' + 1 ensures that this inner loop always is one step ahead of the outer one
+        // 'j' > 'i' + 1 ensures that this inner loop always is one step ahead of the
+        // outer one
         // check if number is same as previous, then skip to avoid duplicates
         if (j > i + 1 && numbers[j] == numbers[j - 1]) {
           continue;
         }
-      
+
         int second = numbers[j]; // store the current number of the inner loop as 'second'
         int third = difference - second; // calculate what the third number is that we need to sum all 3 to 0
-
 
         // check if 'third' exists in cache
         if (cache.getOrDefault(third, 0) > 0) {
@@ -61,7 +62,7 @@ public class ThreeSumCache {
           // 2. same number but we know there is more then 1
           // if either of these scenarios are true, we have found a triplet
           if ((third != second) || (third == second && cache.get(third) > 1)) {
-            int[] triplet = new int[] {first, second, third};
+            int[] triplet = new int[] { first, second, third };
             Arrays.sort(triplet);
             String tripletString = Arrays.toString(triplet);
             if (!triplets.contains(tripletString)) { // Check if the sorted triplet is already in the results list
@@ -79,9 +80,8 @@ public class ThreeSumCache {
     return res;
   }
 
-
   public static void main(String[] args) {
-    int[] nums = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int[] nums = { -4, -2, -2, -1, 0, 1, 2, 2, 3, 4 };
 
     List<int[]> result = threeSum(nums);
 

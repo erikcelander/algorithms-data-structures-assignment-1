@@ -27,9 +27,9 @@ public class ThreeSumBruteForce {
   }
 
   public static void main(String[] args) {
+
     int[] nums = { -4, -2, -2, -1, 0, 1, 2, 2, 3, 4 };
     List<int[]> result = threeSum(nums);
-
 
     for (int[] triplet : result) {
       System.out.println(Arrays.toString(triplet));

@@ -26,7 +26,8 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'uppgift.BenchmarkThreeSum'
+    mainClass = 'uppgift.BenchmarkUF'
+    // BenchmarkUF BenchmarkThreeSum
 }
 
 tasks.named('test') {

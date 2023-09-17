@@ -1,6 +1,9 @@
 package uppgift;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.concurrent.Callable;
 
 public class TimeIt {
@@ -12,6 +15,8 @@ public class TimeIt {
     public final long avg;
     public final long max;
     public final double stdDev;
+    private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+    private static final DecimalFormat df = new DecimalFormat("0.00", symbols);
 
     public TimingResult(long min, long median, long avg, long max, double stdDev, int repetitions) {
       this.repetitions = repetitions;
@@ -21,12 +26,13 @@ public class TimeIt {
       this.max = max;
       this.stdDev = stdDev;
     }
+
     @Override
     public String toString() {
-        return avg + " ns ± " + stdDev + " ns per loop (mean ± std. dev. of " + repetitions + " runs). " +
-               "Min: " + min + " ns, Median: " + median + " ns, Max: " + max + " ns.";
+      return avg + " ns ± " + df.format(stdDev) + " ns per loop (mean ± std. dev. of " + repetitions + " runs). " +
+          "Min: " + min + " ns, Median: " + median + " ns, Max: " + max + " ns.";
     }
-    
+
   }
 
   public static <T> TimingResult timeIt(Callable<T> code, int repetitions) throws Exception {
@@ -58,7 +64,7 @@ public class TimeIt {
 
   public static void main(String[] args) {
 
-    // Example lambda function to test the functionality
+    // Example lambda to test the functionality
     Callable<Void> code = () -> {
       int sum = 0;
       for (int i = 0; i < 100; i++) {
