@@ -1,20 +1,20 @@
 package uppgift;
 
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.Callable;
-
-import uppgift.TimeIt.TimingResult;
-
 public class Application {
 
   public static void main(String[] args) {
     try {
+      System.out.println("-------------------------------------------------");
+      System.out.println("Union Find");
+      System.out.println("-------------------------------------------------");
+      BenchmarkUF.run();
 
-      BenchmarkThreeSum threeSum = new BenchmarkThreeSum();
-      BenchmarkUF unionFind = new BenchmarkUF();
+      System.out.println("");
 
-      threeSum.main(args);
+      System.out.println("-------------------------------------------------");
+      System.out.println("Three Sum");
+      System.out.println("-------------------------------------------------");
+      BenchmarkThreeSum.run();
 
     } catch (Exception e) {
       e.printStackTrace();

@@ -11,12 +11,16 @@ public class BenchmarkThreeSum {
 
   private static final int[] sizes = { 200, 400, 800, 1600 };
   private static final int iterations = 7;
-  private static final int repetitions = 2000;
+  private static final int repetitions = 100;
   private static final Random rand = new Random();
   private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
   private static final DecimalFormat df = new DecimalFormat("0.00", symbols);
 
   public static void main(String[] args) throws Exception {
+    run();
+  }
+
+  public static void run() throws Exception {
 
     for (int size : sizes) {
       int[] numbers = generateRandomIntegers(size);
