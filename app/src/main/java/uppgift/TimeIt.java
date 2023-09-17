@@ -55,8 +55,7 @@ public class TimeIt {
       for (int i = 0; i < 100; i++) {
         sum += i;
       }
-      return null; // returning null here in this example lambda/anonymous function because I used
-                   // Callable<Void>
+      return null;
     };
 
     try {

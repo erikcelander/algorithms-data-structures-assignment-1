@@ -2,13 +2,16 @@ package uppgift;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Arrays;
 
 public class ThreeSumCache {
   public static List<int[]> threeSum(int[] numbers) {
     List<int[]> res = new ArrayList<>();
+    Set<String> triplets = new HashSet<>(); 
 
     Arrays.sort(numbers); // sort to help find/avoid duplicates later
 
@@ -54,10 +57,17 @@ public class ThreeSumCache {
 
           // check if 'third' and 'second' is
           // 1. different numbers
+          // or
           // 2. same number but we know there is more then 1
           // if either of these scenarios are true, we have found a triplet
           if ((third != second) || (third == second && cache.get(third) > 1)) {
-            res.add(new int[] {first, second, third });
+            int[] triplet = new int[] {first, second, third};
+            Arrays.sort(triplet);
+            String tripletString = Arrays.toString(triplet);
+            if (!triplets.contains(tripletString)) { // Check if the sorted triplet is already in the results list
+              res.add(triplet);
+              triplets.add(tripletString);
+            }
           }
         }
 
@@ -71,7 +81,7 @@ public class ThreeSumCache {
 
 
   public static void main(String[] args) {
-    int[] nums = { -4, -2, -2, -1, 0, 1, 2, 2, 3, 4 };
+    int[] nums = {-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     List<int[]> result = threeSum(nums);
 
