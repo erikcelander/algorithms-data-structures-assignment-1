@@ -11,20 +11,22 @@ public class TimeIt {
     public final long median;
     public final long avg;
     public final long max;
+    public final double stdDev;
 
-    public TimingResult(long min, long median, long avg, long max, int repetitions) {
+    public TimingResult(long min, long median, long avg, long max, double stdDev, int repetitions) {
       this.repetitions = repetitions;
       this.min = min;
       this.median = median;
       this.avg = avg;
       this.max = max;
+      this.stdDev = stdDev;
     }
-
     @Override
     public String toString() {
-      return "Min: " + min + " ns, Median: " + median + " ns, Avg: " + avg + " ns, Max: " + max + " ns." +
-          " This was calculated by executing the code " + repetitions + " times."; // Updated string to include reps
+        return avg + " ns ± " + stdDev + " ns per loop (mean ± std. dev. of " + repetitions + " runs). " +
+               "Min: " + min + " ns, Median: " + median + " ns, Max: " + max + " ns.";
     }
+    
   }
 
   public static <T> TimingResult timeIt(Callable<T> code, int repetitions) throws Exception {
@@ -44,7 +46,14 @@ public class TimeIt {
     long median = times[repetitions / 2];
     long max = times[repetitions - 1];
 
-    return new TimingResult(min, median, avg, max, repetitions);
+    double variance = 0;
+    for (long time : times) {
+      variance += Math.pow(time - avg, 2);
+    }
+    variance /= repetitions;
+    double stdDev = Math.sqrt(variance);
+
+    return new TimingResult(min, median, avg, max, stdDev, repetitions);
   }
 
   public static void main(String[] args) {
